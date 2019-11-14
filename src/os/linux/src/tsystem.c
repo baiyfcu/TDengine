@@ -73,6 +73,7 @@ bool taosGetProcMemory(float *memoryUsedMB) {
   char * line = NULL;
   while (!feof(fp)) {
     tfree(line);
+    len = 0;
     getline(&line, &len, fp);
     if (line == NULL) {
       break;
@@ -129,7 +130,7 @@ bool taosGetProcCpuInfo(ProcCpuInfo *cpuInfo) {
     return false;
   }
 
-  size_t len;
+  size_t len = 0;
   char * line = NULL;
   getline(&line, &len, fp);
   if (line == NULL) {
@@ -420,6 +421,7 @@ bool taosGetCardInfo(int64_t *bytes) {
 
   while (!feof(fp)) {
     tfree(line);
+    len = 0;
     getline(&line, &len, fp);
     if (line == NULL) {
       break;
@@ -491,6 +493,7 @@ bool taosReadProcIO(int64_t *readbyte, int64_t *writebyte) {
 
   while (!feof(fp)) {
     tfree(line);
+    len = 0;
     getline(&line, &len, fp);
     if (line == NULL) {
       break;
